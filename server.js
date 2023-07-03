@@ -36,7 +36,7 @@ const mainmenu = () =>  {
                 mainmenu();
                 break;
             case 'add a department':
-                addAnDepartment();
+                addADepartment();
                 mainmenu();
                 break;
             case 'add a role':
@@ -82,8 +82,8 @@ const viewAllEmployees =() => {
     
 };
 
-const addAnDepartment = () => {
-       
+const addADepartment = () => {
+
     console.log('add an department')
 
 
