@@ -10,12 +10,14 @@ CREATE TABLE departments(
 PRIMARY KEY (dep_id)
 );
 
-CREATE TABLE role (
+CREATE TABLE roles (
     role_id INT NOT NULL,
     title VARCHAR(30),
     salary: INT, 
     department_id INT,
     PRIMARY KEY (role_id)
+   FOREIGN KEY (department_id)
+   REFERENCES departments(id)
     -- PRIMARY key (salary)
 );
 
@@ -27,6 +29,8 @@ CREATE TABLE employee (
     salary:INT,
     manager_id INT
 PRIMARY KEY (employee_id)
+FOREIGN KEY (role_id)
+REFERENCES roles(role_id)
+FOREIGN KEY (manager_ID)
+REFERENCES employee(employee_id)
 );
-
-modules.export = TABLES
