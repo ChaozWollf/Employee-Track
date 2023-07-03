@@ -62,19 +62,24 @@ const mainmenu = () =>  {
 mainmenu();
 
 const viewAllDepartments = () => {
-    console.log('view all departments')
+    db.query('SELECT * FROM department', (err, res) => {
+        console.table(res)
+    })
+ }; 
 
-};
 
 const viewAllRoles = () => {
-    console.log('view all roles')
-
+    db.query('SELECT * FROM roles', (err, res) => {
+        console.table(res)
+    })
+   
 };
 
 const viewAllEmployees =() => {
-    console.log('view all employees')
-
-
+    db.query('SELECT * FROM employee', (err, res) => {
+        console.table(res)
+    })
+    
 };
 
 const addAnDepartment = () => {
