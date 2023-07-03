@@ -1,13 +1,24 @@
 const express = require('express');
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
-const 
 // const { kMaxLength } = require('buffer');
 // const { type } = require('os');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-USE records_db;
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+
+const db = mysql.createConnection(
+    {
+        host: 'localhost',
+        user: 'root',
+        password: 'MySql',
+        database: 'records_db'
+    },
+    console.log(`Connected to the records_db database.`)
+);
 
 inquirer
     .prompt([
