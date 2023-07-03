@@ -1,10 +1,13 @@
 const express = require('express');
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
+const 
 // const { kMaxLength } = require('buffer');
 // const { type } = require('os');
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+USE records_db;
 
 inquirer
     .prompt([
