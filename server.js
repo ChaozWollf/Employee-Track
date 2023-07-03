@@ -45,7 +45,8 @@ else if (answers.action == 'add a department')
                 name: 'add_dep',
                 message: 'what is the name of the department?(30 characters max)',
                 maxLength: 30,
-            }.then(('INSERT ${add_dep} to departments'))
+            }.then('INSERT INTO departments(dep_name)',
+            VALUES(add_dep))
             // figure out the above line also
 
         ])
@@ -71,8 +72,8 @@ else if (answers.action == 'add a role')
                 message: 'which department is this role going to be for?'
             },
         ]).then (
-            INSERT INTO role(title, salary, department_id)
-        VALUES(${ add_role }, ${ add_salary }, ${ dep_role }))
+            'INSERT INTO role(title, salary, department_id)',
+        VALUES(add_role ,add_salary , dep_role ))
 
 
 }
@@ -106,9 +107,9 @@ else if (answers.action == 'add an employee')
 
             },
         ]).then(
-            INSERT INTO employee(first_name, last_name, role_id, manager_id)
-            VALUES(${}, ${}, emp_role.value, emp_manager.value)
-        )
+             'INSERT INTO employee (first_name, last_name, role_id, manager_id)',
+            VALUES(emp_firstName ,emp_lastname ,emp_role ,emp_manager))
+        
 
 
 }
@@ -132,7 +133,7 @@ else if (answers.action == 'update an employee role')
 }
         ]).then(
             UPDATE employee
-        SET role_id =${emp_newRole}
+        SET role_id = emp_newRole
         WHERE employee_id = ${emp_id}
         )
 
