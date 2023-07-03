@@ -79,12 +79,22 @@ const viewAllEmployees =() => {
     db.query('SELECT * FROM employee', (err, res) => {
         console.table(res)
     })
-    
+     
 };
 
 const addADepartment = () => {
 
-    console.log('add an department')
+        inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'add_dep',
+                message: 'what is the name of the department?',
+            }.then('INSERT INTO departments(dep_name)',
+            VALUES(add_dep))
+        ]);
+    
+            console.log('add an department')
 
 
 };
