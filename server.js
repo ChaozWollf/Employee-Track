@@ -145,7 +145,7 @@ else if (answers.action == 'update an employee role')
         ]).then(
             UPDATE employee
         SET role_id = emp_newRole
-        WHERE employee_id = ${emp_id}
+        WHERE employee_id = employee_id
         )
 
     }});
