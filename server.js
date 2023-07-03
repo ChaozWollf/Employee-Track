@@ -24,31 +24,31 @@ const mainmenu = () =>  {
     ]).then((answers) => {
         switch(answers.action){
         case 'view all departments':
-           viewAllEmployees();
+                viewAllDepartments ();
             mainmenu();
             break;
             case 'view all roles':
-                console.log('view all roles')
+                viewAllRoles();
                 mainmenu();
                 break;
             case 'view all employees':
-                console.log('view all employees')
+                viewAllEmployees();
                 mainmenu();
                 break;
             case 'add a department':
-                console.log('add a department')
+                addAnDepartment();
                 mainmenu();
                 break;
             case 'add a role':
-                console.log('add a role')
+                addARole();
                 mainmenu();
                 break;
             case 'add an employee':
-                console.log('add an employee')
+                addAnEmployee();
                 mainmenu();
                 break;
             case 'update an employee role':
-                console.log('update an employee role')
+                updateAnEmployee();
                 mainmenu();
                 break;
     
@@ -61,11 +61,46 @@ const mainmenu = () =>  {
 
 mainmenu();
 
-const viewAllEmployees =() => {
+const viewAllDepartments = () => {
     console.log('view all departments')
 
+};
 
-}
+const viewAllRoles = () => {
+    console.log('view all roles')
+
+};
+
+const viewAllEmployees =() => {
+    console.log('view all employees')
+
+
+};
+
+const addAnDepartment = () => {
+    console.log('add an department')
+
+
+};
+
+const addARole = () => {
+    console.log('add a role')
+
+
+};
+
+const addAnEmployee = () => {
+    console.log('add an employee')
+
+
+};
+
+const updateAnEmployee = () => {
+    console.log('update an employee')
+
+
+};
+
 
 // inquirer
 //     .prompt([
