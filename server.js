@@ -81,28 +81,42 @@ const viewAllEmployees =() => {
     })
      
 };
-
 const addADepartment = () => {
-
-        inquirer
+    inquirer
         .prompt([
             {
-                type: 'input',
-                name: 'add_dep',
-                message: 'what is the name of the department?',
+                type: "input",
+                name: "add_dep",
+                message: "what is the name of the department?",
             },
-           
         ])
-            }.then((data) => {
-                'INSERT INTO departments(dep_name)'
-                const sql = 'INSERT INTO departments(dep_name)'
-           VALUES(data)
+        .then((data) => {
+            // create sql statment to insert into department table
+            const sql = `INSERT INTO departments(dep_name)VALUES(data)`;
+            // pass data into sql statement using db.query like you did above in your code
+        });
+};
+// const addADepartment = () => {
+
+//         inquirer
+//         .prompt([
+//             {
+//                 type: 'input',
+//                 name: 'add_dep',
+//                 message: 'what is the name of the department?',
+//             },
+           
+//         ])
+//             }.then((data) => {
+//                 INSERT INT'O departments(dep_name)'
+//                 const sql = 'INSERT INTO departments(dep_name)'
+//            VALUES(data)
 
     
             // console.log('add an department')
 
 
-};
+
 
 const addARole = () => {
     console.log('add a role')
