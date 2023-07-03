@@ -90,11 +90,16 @@ const addADepartment = () => {
                 type: 'input',
                 name: 'add_dep',
                 message: 'what is the name of the department?',
-            }.then((data)=>{const sql} ('INSERT INTO departments(dep_name)'
-           VALUES(sql)))
-]);
+            },
+           
+        ])
+            }.then((data) => {
+                'INSERT INTO departments(dep_name)'
+                const sql = 'INSERT INTO departments(dep_name)'
+           VALUES(data)
+
     
-            console.log('add an department')
+            // console.log('add an department')
 
 
 };
