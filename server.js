@@ -67,9 +67,9 @@ else if (answers.action == 'add a role')
                 name: 'dep_role',
                 message: 'which department is this role going to be for?'
             },
-        ]).then(
+        ]).then (
             INSERT INTO role(title, salary, department_id)
-        VALUES(${ add_role }, ${ add_salary }, ${ dep_role });
+        VALUES(${ add_role }, ${ add_salary }, ${ dep_role }))
 
 
 }
