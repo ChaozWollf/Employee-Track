@@ -15,28 +15,24 @@ inquirer
             choices: ['view all departments', 'view all roles', 'view all employees', 'add a department', 'add a role', 'add an employee', 'update an employee role']
 
         }
-    ]).then()
-if ('view all departments') {
-case
+    ]).then((answers) => {
+if (answers.action =='view all departments') {
+    console.log(viewDepartments)
     // when choose to view all departments
     //figure out how to display departments table here
 }
-else if
-case
+else if (answers.action == 'view all roles') 
 {
     //when view all roles 
     //figure out how to display role table
 }
-
-else if
-case
+else if (answers.action == 'view all employees')
 {
     //when view all employees
     //figure out how to show employee table
 }
 
-else
-case
+else if (answers.action == 'add a department') 
 {
     //when add department
     inquirer
@@ -51,8 +47,7 @@ case
 
         ])
 }
-else
-case
+else if (answers.action == 'add a role')
 //when add a role
 {
     inquirer
@@ -78,8 +73,7 @@ case
 
 
 }
-else
-case
+else if (answers.action == 'add an employee')
 //when add an employee
 {
     inquirer
@@ -114,9 +108,8 @@ case
         )
 
 
-},
-else
-case
+}
+else if (answers.action == 'update an employee role') 
 //updating an employee
 {
     inquirer
