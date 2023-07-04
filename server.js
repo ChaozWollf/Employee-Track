@@ -62,7 +62,7 @@ const mainmenu = () =>  {
 mainmenu();
 
 const viewAllDepartments = () => {
-    db.query('SELECT * FROM department', (err, res) => {
+    db.query('SELECT * FROM departments', (err, res) => {
         console.table(res)
     })
  }; 
@@ -76,7 +76,7 @@ const viewAllRoles = () => {
 };
 
 const viewAllEmployees =() => {
-    db.query('SELECT * FROM employee', (err, res) => {
+    db.query('SELECT * FROM employees', (err, res) => {
         console.table(res)
     })
      
@@ -91,7 +91,7 @@ const addADepartment = () => {
             },
         ])
         .then((data) => {
-            const sql = `INSERT INTO department(dep_name)VALUES(?)`;
+            const sql = `INSERT INTO departments(dep_name)VALUES(?)`;
             const params = [data.add_dep];
 
             db.query(sql, params, (err, res) => {
@@ -129,7 +129,7 @@ const addARole = () => {
             },
         ])
         .then((data) => {
-            const sql = `INSERT INTO roles(title, salary, dept_id)VALUES(?)`;
+            const sql = `INSERT INTO roles(title, salary, deptartment_id)VALUES(?)`;
             const params = [data.add_role, data.add_salary, data.dep_role];
 
             db.query(sql, params, (err, res) => {
@@ -175,7 +175,7 @@ const addARole = () => {
    
         ])
         .then((data) => {
-            const sql = `INSERT INTO employee(first_name, last_name, role_id, manager_id)VALUES(?)`;
+            const sql = `INSERT INTO employees(first_name, last_name, role_id, manager_id)VALUES(?)`;
             const params = [data.emp_firstName, data.emp_lastName, data.emp_role, data.emp_manager];
 
             db.query(sql, params, (err, res) => {
