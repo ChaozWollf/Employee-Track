@@ -107,7 +107,13 @@ const addADepartment = () => {
 
 
 const addARole = () => {
-   
+    db.query('SELECT * FROM departments', (err, res) => {
+        const departmentChoices = res.map(({ department_id, dep_name }) => ({
+
+            name: dep_name,
+            value: department_id
+        }));
+
     inquirer
         .prompt([
             {
@@ -119,17 +125,16 @@ const addARole = () => {
                 type: 'input',
                 name: 'add_salary',
                 message: 'what is the salary for this role?',
-               choices: []
             },
             {
                 type: 'list',
                 name: 'dep_role',
                 message: 'which department is this role going to be for?',
-              choices: []
+                choices: departmentChoices
             },
         ])
         .then((data) => {
-            const sql = `INSERT INTO roles(title, salary, deptartment_id)VALUES(?)`;
+            const sql = `INSERT INTO roles(title, salary, department_id)VALUES(?,?,?)`;
             const params = [data.add_role, data.add_salary, data.dep_role];
 
             db.query(sql, params, (err, res) => {
@@ -143,10 +148,26 @@ const addARole = () => {
 
        });
 
-      };
+    });
+       
+    };
    
  const addAnEmployee = () => {
-   
+     db.query('SELECT * FROM roles', (err, res) => {
+         const rolesChoices = res.map(({ role_id, title,salary, department_id }) => ({
+
+             name: title,
+             value: role_id
+         }));
+         db.query('SELECT * FROM employees', (err, res) => {
+             const managerChoices = res.map(({ employee_id, first_name, last_name, role_id, salary, manager_id }) => ({
+
+                 name: first_name, last_name,
+                 value: employee_id
+             }));
+
+
+
     inquirer
         .prompt([
             {
@@ -164,19 +185,19 @@ const addARole = () => {
                 type: 'list',
                 name: 'emp_role',
                 message: 'what is the employees role?',
-                choices: []
+                choices: rolesChoices
             },
             {
                 type: 'list',
                 name: 'emp_manager',
                 message: 'who is the employees manager?',
-                choices: []
+                choices: managerChoices
 
             },
    
         ])
         .then((data) => {
-            const sql = `INSERT INTO employees(first_name, last_name, role_id, manager_id)VALUES(?)`;
+            const sql = `INSERT INTO employees(first_name, last_name, role_id, manager_id)VALUES(?,?,?,?)`;
             const params = [data.emp_firstName, data.emp_lastName, data.emp_role, data.emp_manager];
 
             db.query(sql, params, (err, res) => {
@@ -189,8 +210,9 @@ const addARole = () => {
             });
 
         });
-        
-};
+    });
+    });
+    };
    
 
 
