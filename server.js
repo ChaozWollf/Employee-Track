@@ -91,41 +91,76 @@ const addADepartment = () => {
             },
         ])
         .then((data) => {
-            // create sql statment to insert into department table
             const sql = `INSERT INTO departments(dep_name)VALUES(data)`;
-            // pass data into sql statement using db.query like you did above in your code
-        });
+            });
 };
-// const addADepartment = () => {
-
-//         inquirer
-//         .prompt([
-//             {
-//                 type: 'input',
-//                 name: 'add_dep',
-//                 message: 'what is the name of the department?',
-//             },
-           
-//         ])
-//             }.then((data) => {
-//                 INSERT INT'O departments(dep_name)'
-//                 const sql = 'INSERT INTO departments(dep_name)'
-//            VALUES(data)
-
-    
-            // console.log('add an department')
-
-
 
 
 const addARole = () => {
-    console.log('add a role')
-
-
+   
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "add_role",
+                message: "what is the name of the role?",
+            },
+            {
+                type: 'list',
+                name: 'add_salary',
+                message: 'what is the salary for this role?'
+            },
+            {
+                type: 'list',
+                name: 'dep_role',
+                message: 'which department is this role going to be for?'
+            },
+        ])
+        .then((data) => { data = [add_role, add_salary, dep_role]
+            const sql = `INSERT INTO roles(title, salary, department_id )VALUES(add_role, add_salary, dep_rol)`;
+        });
 };
+   
+   
+    // console.log('add a role')
+
 
 const addAnEmployee = () => {
-    console.log('add an employee')
+   
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'emp_firstName',
+                message: 'what is the employees first name?'
+            },
+            {
+                type: 'input',
+                name: 'emp_lastName',
+                message: 'what is the employees last name?'
+
+            },
+            {
+                type: 'list',
+                name: 'emp_role',
+                message: 'what is the employees role?',
+                choices: []
+            },
+            {
+                type: 'list',
+                name: 'emp_manager',
+                message: 'who is the employees manager?',
+                choices []
+
+            },
+   
+        ])
+        .then((data) => {
+            data = [emp_firstName, emp_lastName, emp_role, emp_manager]
+            const sql = `INSERT INTO employees(first_name,  last_name, role_id, manager_id )VALUES(emp_firstName, emp_lastName, emp_role, emp_manager)`;
+        });
+};
+    // console.log('add an employee')
 
 
 };
@@ -136,7 +171,7 @@ const updateAnEmployee = () => {
 
 };
 
-
+ 
 // inquirer
 //     .prompt([
 //         {

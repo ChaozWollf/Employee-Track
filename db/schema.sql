@@ -19,7 +19,7 @@ CREATE TABLE roles (
    FOREIGN KEY (department_id)
    REFERENCES department(dep_id)
    ON DELETE SET NULL
-    -- PRIMARY key (salary)
+   
 );
 
 CREATE TABLE employee (
