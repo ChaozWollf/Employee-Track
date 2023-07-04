@@ -150,7 +150,7 @@ const addAnEmployee = () => {
                 type: 'list',
                 name: 'emp_manager',
                 message: 'who is the employees manager?',
-                choices []
+                choices: []
 
             },
    
@@ -163,7 +163,7 @@ const addAnEmployee = () => {
     // console.log('add an employee')
 
 
-};
+
 
 const updateAnEmployee = () => {
     console.log('update an employee')
