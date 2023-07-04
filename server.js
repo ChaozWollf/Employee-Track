@@ -115,12 +115,12 @@ const addARole = () => {
                 name: "add_role",
                 message: "what is the name of the role?",
             },
-            {
-                type: 'list',
-                name: 'add_salary',
-                message: 'what is the salary for this role?',
-               choices: []
-            },
+            // {
+            //     type: 'list',
+            //     name: 'add_salary',
+            //     message: 'what is the salary for this role?',
+            //    choices: []
+            // },
             {
                 type: 'list',
                 name: 'dep_role',
