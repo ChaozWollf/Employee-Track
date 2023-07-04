@@ -37,16 +37,13 @@ const mainmenu = () =>  {
                 break;
             case 'add a department':
                 addADepartment();
-                mainmenu();
                 break;
             case 'add a role':
                 addARole();
-                mainmenu();
-                break;
+                  break;
             case 'add an employee':
                 addAnEmployee();
-                mainmenu();
-                break;
+                 break;
             case 'update an employee role':
                 updateAnEmployee();
                 mainmenu();
@@ -99,6 +96,7 @@ const addADepartment = () => {
                     console.log(err);
                 } else {
                     console.log("Department added successfully!");
+                mainmenu();
                 }
             });
         
@@ -137,6 +135,7 @@ const addARole = () => {
                     console.log(err);
                 } else {
                     console.log("Role added successfully!");
+               mainmenu();
                 }
             });
 
@@ -183,6 +182,7 @@ const addARole = () => {
                     console.log(err);
                 } else {
                     console.log("Employee added successfully!");
+                    mainmenu();
                 }
             });
 
