@@ -15,8 +15,7 @@ CREATE TABLE roles (
     title VARCHAR(30),
     salary INT, 
     department_id INT UNSIGNED,
-    -- PRIMARY KEY (role_id),
-   FOREIGN KEY (department_id)
+     FOREIGN KEY (department_id)
    REFERENCES departments(department_id)
    ON DELETE SET NULL
    
@@ -29,7 +28,6 @@ CREATE TABLE employees(
     role_id INT UNSIGNED,
     salary INT,
     manager_id INT UNSIGNED,
--- PRIMARY KEY (employee_id),
 FOREIGN KEY (role_id)
 REFERENCES roles(role_id)
 ON DELETE SET NULL,

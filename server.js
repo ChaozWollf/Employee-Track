@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
-
+//connection to database
 const db = mysql.createConnection(
     {
         host: 'localhost',
@@ -10,6 +10,8 @@ const db = mysql.createConnection(
     },
     console.log(`Connected to the records_db database.`)
 );
+
+//main menu selection
 const mainmenu = () =>  {
 
     inquirer
@@ -58,6 +60,7 @@ const mainmenu = () =>  {
 
 mainmenu();
 
+//view the departments table
 const viewAllDepartments = () => {
     db.query('SELECT * FROM departments', (err, res) => {
         console.table(res)
@@ -65,19 +68,23 @@ const viewAllDepartments = () => {
  }; 
 
 
-const viewAllRoles = () => {
+//view the roles table
+ const viewAllRoles = () => {
     db.query('SELECT * FROM roles', (err, res) => {
         console.table(res)
     })
    
 };
 
+//view the employees table
 const viewAllEmployees =() => {
     db.query('SELECT * FROM employees', (err, res) => {
         console.table(res)
     })
      
 };
+
+//adding a department using inquirer and a data base query
 const addADepartment = () => {
     inquirer
         .prompt([
@@ -105,7 +112,7 @@ const addADepartment = () => {
         });
 };
 
-
+//adding a role using inquirer and a database query
 const addARole = () => {
     db.query('SELECT * FROM departments', (err, res) => {
         const departmentChoices = res.map(({ department_id, dep_name }) => ({
@@ -152,7 +159,8 @@ const addARole = () => {
        
     };
    
- const addAnEmployee = () => {
+ //adding an emloyee using inquirer and a database query
+    const addAnEmployee = () => {
      db.query('SELECT * FROM roles', (err, res) => {
          const rolesChoices = res.map(({ role_id, title,salary, department_id }) => ({
 
@@ -217,7 +225,7 @@ const addARole = () => {
 
 
 
-
+//updating the role of a current employee using database query and inquirer
 const updateAnEmployee = () => {
     db.query('SELECT * FROM roles', (err, res) => {
         const roleChoices = res.map(({ role_id, title,salary, department_id}) => ({
@@ -249,7 +257,7 @@ const updateAnEmployee = () => {
                 },
             ])
             .then((data) => {
-                const sql = `UPDATE employees SET title = ? WHERE employee_id = ?`;
+                const sql = `UPDATE employees SET role_id = ? WHERE employee_id = ?`;
                 const params = [data.roleChoices, data.employeeChoices];
 
                 db.query(sql, params, (err, res) => {
@@ -273,132 +281,3 @@ const updateAnEmployee = () => {
 };
 
  
-// inquirer
-//     .prompt([
-//         {
-//             type: 'list',
-//             name: 'action',
-//             message: 'what would you like to do?',
-//             choices: ['view all departments', 'view all roles', 'view all employees', 'add a department', 'add a role', 'add an employee', 'update an employee role']
-
-//         }
-//     ]).then((answers) => {
-// if (answers.action =='view all departments') {
-//     console.log(viewDepartments)
-//     // when choose to view all departments
-//     //figure out how to display departments table here
-// }
-// else if (answers.action == 'view all roles') 
-// {
-//     //when view all roles 
-//     //figure out how to display role table
-// }
-// else if (answers.action == 'view all employees')
-// {
-//     //when view all employees
-//     //figure out how to show employee table
-// }
-
-// else if (answers.action == 'add a department') 
-// {
-//     //when add department
-//     inquirer
-//         .prompt([
-//             {
-//                 type: 'maxlength-input',
-//                 name: 'add_dep',
-//                 message: 'what is the name of the department?(30 characters max)',
-//                 maxLength: 30,
-//             }.then('INSERT INTO departments(dep_name)',
-//             VALUES(add_dep))
-//             // figure out the above line also
-
-//         ])
-// }
-// // else if (answers.action == 'add a role')
-// //when add a role
-// {
-//     inquirer
-//         .prompt([
-//             {
-//                 type: 'maxength-input',
-//                 name: 'add-role',
-//                 message: 'what is the name of the role?'
-//             },
-//             {
-//                 type: 'list',
-//                 name: 'add_salary',
-//                 message: 'what is the salary for this role?'
-//             },
-//             {
-//                 type: 'list',
-//                 name: 'dep_role',
-//                 message: 'which department is this role going to be for?'
-//             },
-//         ]).then (
-//             'INSERT INTO role(title, salary, department_id)',
-//         VALUES(add_role ,add_salary , dep_role ))
-
-
-// }
-// else if (answers.action == 'add an employee')
-// //when add an employee
-// {
-//     inquirer
-//         .prompt([
-//             {
-//                 type: 'input',
-//                 name: 'emp_firstName',
-//                 message: 'what is the employees first name?'
-//             },
-//             {
-//                 type: 'input',
-//                 name: 'emp_lastName',
-//                 message: 'what is the employees last name?'
-
-//             },
-//             {
-//                 type: 'list',
-//                 name: 'emp_role',
-//                 message: 'what is the employees role?',
-//                 choices: []
-//             },
-//             {
-//                 type: 'list',
-//                 name: 'emp_manager',
-//                 message: 'who is the employees manager?',
-//                 choices []
-
-//             },
-//         ]).then(
-//              'INSERT INTO employee(first_name, last_name, role_id, manager_id)',
-//             VALUES(emp_firstName ,emp_lastname ,emp_role ,emp_manager))
-        
-
-
-// }
-// else if (answers.action == 'update an employee role') 
-// //updating an employee
-// {
-//     inquirer
-//         .propmt([
-
-//             {
-//                 type: 'list',
-//                 name: 'emp_id',
-//                 message: 'which employees role do you want to update?',
-//                 choices: []
-//             },
-//             {
-//                 type: 'list',
-//                 name: 'emp_newRole',
-//                 message: 'what would you like this employees new role to be?',
-//                 choices[]
-// }
-//         ]).then(
-//             UPDATE employee
-//         SET role_id = emp_newRole
-//         WHERE employee_id = employee_id
-//         )
-
-//     }});
