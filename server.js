@@ -46,7 +46,7 @@ const mainmenu = () =>  {
                  break;
             case 'update an employee role':
                 updateAnEmployee();
-                mainmenu();
+                // mainmenu();
                 break;
     
                 default: 
@@ -220,7 +220,7 @@ const addARole = () => {
 
 const updateAnEmployee = () => {
     db.query('SELECT * FROM roles', (err, res) => {
-        const roleChoices = res.map(({ role_id, title, salary, department_id }) => ({
+        const roleChoices = res.map(({ role_id, title,salary, department_id}) => ({
 
             name: title,
             value: role_id
@@ -241,7 +241,7 @@ const updateAnEmployee = () => {
                     message: 'what is the name of the emlpoyee who is getting a different role?',
                     choices: employeeChoices
                 },
-                               {
+                {
                     type: 'list',
                     name: 'roleChange',
                     message: 'which role is this employee going into?',
@@ -249,8 +249,8 @@ const updateAnEmployee = () => {
                 },
             ])
             .then((data) => {
-                const sql = `UPDATE employee SET role = WHERE employee_id = VALUES(?,?)`;
-                const params = [data.employeeRoleChange, data.rollChange];
+                const sql = `UPDATE employees SET title = ? WHERE employee_id = ?`;
+                const params = [data.roleChoices, data.employeeChoices];
 
                 db.query(sql, params, (err, res) => {
                     if (err) {
