@@ -162,7 +162,7 @@ const addARole = () => {
          db.query('SELECT * FROM employees', (err, res) => {
              const managerChoices = res.map(({ employee_id, first_name, last_name, role_id, salary, manager_id }) => ({
 
-                 name: first_name, last_name,
+                 name: `${first_name} ${last_name}`,
                  value: employee_id
              }));
 
@@ -219,7 +219,55 @@ const addARole = () => {
 
 
 const updateAnEmployee = () => {
-    console.log('update an employee')
+    db.query('SELECT * FROM roles', (err, res) => {
+        const roleChoices = res.map(({ role_id, title, salary, department_id }) => ({
+
+            name: title,
+            value: role_id
+        }));
+        db.query('SELECT * FROM employees', (err, res) => {
+            const employeeChoices = res.map(({ employee_id, first_name, last_name, role_id, salary, manager_id }) => ({
+
+                name: `${first_name} ${last_name}`,
+                value: employee_id
+            }));
+    
+           
+             inquirer
+            .prompt([
+                {
+                    type: 'list',
+                    name: 'employeeRoleChange',
+                    message: 'what is the name of the emlpoyee who is getting a different role?',
+                    choices: employeeChoices
+                },
+                               {
+                    type: 'list',
+                    name: 'roleChange',
+                    message: 'which role is this employee going into?',
+                    choices: roleChoices
+                },
+            ])
+            .then((data) => {
+                const sql = `UPDATE employee SET role = WHERE employee_id = VALUES(?,?)`;
+                const params = [data.employeeRoleChange, data.rollChange];
+
+                db.query(sql, params, (err, res) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log("Role changed successfully!");
+                        mainmenu();
+                    }
+                });
+
+            });
+
+    });
+
+});
+
+ 
 
 
 };
