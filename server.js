@@ -91,8 +91,20 @@ const addADepartment = () => {
             },
         ])
         .then((data) => {
-            const sql = `INSERT INTO departments(dep_name)VALUES(data)`;
+            const sql = `INSERT INTO department(dep_name)VALUES(?)`;
+            const params = [data.add_dep];
+
+            db.query(sql, params, (err, res) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Department added successfully!");
+                }
             });
+        
+        
+        
+        });
 };
 
 
@@ -116,16 +128,23 @@ const addARole = () => {
                 message: 'which department is this role going to be for?'
             },
         ])
-        .then((data) => { data = [add_role, add_salary, dep_role]
-            const sql = `INSERT INTO roles(title, salary, department_id )VALUES(add_role, add_salary, dep_rol)`;
-        });
-};
-   
-   
-    // console.log('add a role')
+        .then((data) => {
+            const sql = `INSERT INTO roles(title, salary, dept_id)VALUES(?)`;
+            const params = [data.add_role, data.add_salary, data.dep_role];
 
+            db.query(sql, params, (err, res) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Role added successfully!");
+                }
+            });
 
-const addAnEmployee = () => {
+       });
+
+      };
+   
+ const addAnEmployee = () => {
    
     inquirer
         .prompt([
@@ -156,11 +175,21 @@ const addAnEmployee = () => {
    
         ])
         .then((data) => {
-            data = [emp_firstName, emp_lastName, emp_role, emp_manager]
-            const sql = `INSERT INTO employees(first_name,  last_name, role_id, manager_id )VALUES(emp_firstName, emp_lastName, emp_role, emp_manager)`;
+            const sql = `INSERT INTO employee(first_name, last_name, role_id, manager_id)VALUES(?)`;
+            const params = [data.emp_firstName, data.emp_lastName, data.emp_role, data.emp_manager];
+
+            db.query(sql, params, (err, res) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Employee added successfully!");
+                }
+            });
+
         });
+        
 };
-    // console.log('add an employee')
+   
 
 
 
